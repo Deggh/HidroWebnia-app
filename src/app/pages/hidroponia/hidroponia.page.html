@@ -1,0 +1,112 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>HidroWebnia</ion-title>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/medidas']">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngIf="device">
+    <div class="titulo">
+      <h1>{{ device.name }}</h1>
+    </div>
+    <div *ngIf="device.measures && device.measures.length > 0">
+      <div class="medidas" *ngIf="getLastMeasure() as measure">
+        <div class="extra" [ngClass]="{'dia': isDayTime(measure.timestamp), 'noite': !isDayTime(measure.timestamp)}">
+          <img class="imagem" src="../../assets/img/medidas/date.png" alt="">
+          <div>
+            <p class="subtitulo">Data e hora:</p>
+            <p class="valor">{{ measure.timestamp | date: 'dd/MM/yyyy - HH:mm:ss' }}</p>
+          </div>
+        </div>
+        <div class="medida">
+          <img class="imagem termometro" src="../../assets/img/medidas/temperature.png" alt="">
+          <div>
+            <p class="subtitulo">Temperatura:</p>
+            <p class="valor">{{ measure.temperature }}</p>
+          </div>
+        </div>
+        <div class="medida">
+          <img class="imagem" src="../../assets/img/medidas/humidity.png" alt="">
+          <div>
+            <p class="subtitulo">Umidade:</p>
+            <p class="valor">{{ measure.humidity }}</p>
+          </div>
+        </div>
+        <div class="medida">
+          <img class="imagem" src="../../assets/img/medidas/ph.png" alt="">
+          <div>
+            <p class="subtitulo">pH:</p>
+            <p class="valor">{{ measure.ph }}</p>
+          </div>
+        </div>
+        <div class="medida">
+          <img class="imagem" src="../../assets/img/medidas/luminosity.png" alt="">
+          <div>
+            <p class="subtitulo">Luminosidade:</p>
+            <p class="valor">{{ measure.luminosity }}</p>
+          </div>
+        </div>
+        <div class="medida">
+          <img class="imagem" src="../../assets/img/medidas/condutivity.png" alt="">
+          <div>
+            <p class="subtitulo">Condutividade:</p>
+            <p class="valor">{{ measure.conductivity }}</p>
+          </div>
+        </div>
+        <div class="medida">
+          <img class="imagem" src="../../assets/img/medidas/waterFlux.png" alt="">
+          <div>
+            <p class="subtitulo">Fluxo de Água:</p>
+            <p class="valor">{{ measure.waterFlux ? 'Tem fluxo' : 'Não tem fluxo' }}</p>
+          </div>
+        </div>
+        <div class="medida">
+          <img class="imagem" src="../../assets/img/medidas/temperatureWater.png" alt="">
+          <div>
+            <p class="subtitulo">Temperatura da Água:</p>
+            <p class="valor">{{ measure.waterTemperature }}</p>
+          </div>
+        </div>
+        <div class="medida">
+          <img class="imagem" src="../../assets/img/medidas/levelWater.png" alt="">
+          <div>
+            <p class="subtitulo">Nível do Reservatório:</p>
+            <p class="valor">{{ measure.containerLevel }}</p>
+          </div>
+        </div>
+        <div class="medida">
+          <img class="imagem" src="../../assets/img/medidas/uv.png" alt="">
+          <div>
+            <p class="subtitulo">UV:</p>
+            <p class="valor">{{ measure.uv }}</p>
+          </div>
+        </div>
+        <div class="medida">
+          <img class="imagem" src="../../assets/img/medidas/time.png" alt="">
+          <div>
+            <p class="subtitulo">Tempo Online:</p>
+            <p class="valor">{{ measure.onlineTime }}</p>
+          </div>
+        </div>
+        <div class="extra" [ngClass]="{'dia': isDayTime(measure.timestamp), 'noite': !isDayTime(measure.timestamp)}">
+          <img class="imagem" src="../../assets/img/medidas/engine.png" alt="">
+          <div>
+            <p class="subtitulo">Motor:</p>
+            <p class="valor">{{ measure.engineStatus ? 'Ligado' : 'Desligado' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="noMeasures" *ngIf="device.measures.length == 0">
+      <p>Sem medidas disponíveis.</p>
+    </div>
+  </div>
+  <div id="loading" *ngIf="!device">
+    <p>Carregando dados...</p>
+  </div>
+</ion-content>

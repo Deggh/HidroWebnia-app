@@ -1,0 +1,37 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>HidroWebnia</ion-title>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/report']">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="titulo">
+    <h1>Relatórios</h1>
+  </div>
+  <main>
+    <ul>
+      <li *ngFor="let field of fields">
+        <button
+          [ngStyle]="{'background-color': selectedField === field.key ? '#1c1c1c' : '#999', 'color': selectedField === field.key ? '#fff' : '#000'}"
+          (click)="selectField(field.key)" class="nav-button">
+          {{ field.label }}
+        </button>
+      </li>
+    </ul>
+    <div id="graphs" *ngIf="selectedField">
+      <div>
+        <canvas id="daily"></canvas>
+      </div>
+      <div>
+        <canvas id="weekly"></canvas>
+      </div>
+      <div>
+        <canvas id="monthly"></canvas>
+      </div>
+    </div>
+  </main>

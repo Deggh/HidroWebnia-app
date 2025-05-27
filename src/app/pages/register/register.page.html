@@ -1,0 +1,35 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar id="menuC">
+    <ion-title>HidroWebnia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="cadastro-page">
+    <div id="cadastro">
+      <h2>Cadastro</h2>
+
+      <form>
+        <input [(ngModel)]="username" [ngModelOptions]="{standalone: true}" placeholder="Nome do Usuário" type="text" required>
+
+        <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="Email" type="email" required>
+
+        <div class="password">
+          <input [attr.type]="mostrarSenha ? 'text' : 'password'" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" placeholder="Senha" type="password" required>
+          <i (click)="mostrarSenha = !mostrarSenha" class="bi" [class.bi-eye-fill]="!mostrarSenha" [class.bi-eye-slash-fill]="mostrarSenha"></i>
+        </div>
+
+        <input [attr.type]="mostrarSenha ? 'text' : 'password'" [(ngModel)]="confirmPassword" [ngModelOptions]="{standalone: true}" placeholder="Confirmar Senha" required>
+
+        <button (click)="registerNewUser()" [disabled]="loading">
+          <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
+          <span *ngIf="!loading">Cadastrar</span>
+        </button>
+      </form>
+
+      <a [routerLink]="['/login']">
+        <p>Já possui uma conta? Faça o login aqui</p>
+      </a>
+    </div>
+  </div>
+</ion-content>

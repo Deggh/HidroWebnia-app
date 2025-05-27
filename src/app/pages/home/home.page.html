@@ -1,0 +1,181 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar id="menu">
+    <ion-title>HidroWebnia</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleDropdown()">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-list *ngIf="isDropdownOpen" class="dropdown-menu" side="bottom">
+  <ion-item [routerLink]="['/medidas']">
+    <ion-icon name="stats-chart-outline" slot="start"></ion-icon>
+    Medidas
+  </ion-item>
+  <ion-item [routerLink]="['/admin']">
+    <ion-icon name="settings-outline" slot="start"></ion-icon>
+    Administração
+  </ion-item>
+  <ion-item [routerLink]="['/report']">
+    <ion-icon name="reader-outline" slot="start"></ion-icon>
+    Relatórios
+  </ion-item>
+  <ion-item button (click)="logout()">
+    <ion-icon name="power-outline" slot="start"></ion-icon>
+    Logout
+  </ion-item>
+</ion-list>
+
+<ion-content [fullscreen]="true">
+
+  <div class="primeiraDiv">
+    <div class="size">
+      <h1>Inovando a produção de alimentos com a tecnologia de hidroponia.</h1>
+
+    <p>Bem-vindo ao HidroWebnia, o seu destino online para tudo relacionado à hidroponia! Navegue em nosso vasto catálogo de equipamentos, suprimentos e conhecimento especializado para iniciar e aprimorar seu próprio jardim hidropônico.</p>
+
+    <!--
+    <div>
+      <button [routerLink]="['/login']" class="btnEntrar">Entrar</button>
+      <button [routerLink]="['/cadastro']" class="btnCadastrar">Cadastrar</button>
+    </div>
+    -->
+    </div>
+  </div>
+
+  <div class="segundaDiv">
+    <div id="informacao">
+      <h1>Transforme sua produção hidropônica com um monitoramento avançado.</h1>
+      <p>Na HidroWebnia, entendemos que a eficiência e a produtividade de um sistema hidropônico dependem de um monitoramento contínuo e preciso. Sem uma supervisão adequada, sua produção pode estar perdendo potenciais ganhos, comprometendo o crescimento das suas plantas e a rentabilidade do seu negócio.</p>
+      <p>Nossa equipe especializada está pronta para garantir que seu sistema esteja operando de maneira ideal, maximizando resultados e minimizando falhas. Ao confiar no monitoramento especializado da HidroWebnia, você garante um acompanhamento constante e insights valiosos para otimizar cada aspecto do seu cultivo.</p>
+      <p>Preencha os dados ao lado e agende seu monitoramento personalizado. Estamos aqui para ajudar você a alcançar o máximo desempenho de sua produção hidropônica, com a qualidade e a expertise que só a HidroWebnia oferece.</p>
+    </div>
+    <!--
+    <div id="agenda">
+      <h2>Agende seu monitoramento</h2>
+
+      <form action="">
+        <input type="text" placeholder="Nome">
+        <input type="text" placeholder="Endereço">
+        <input type="email" placeholder="Email">
+        <input type="text" placeholder="Telefone">
+        <button>Agendar</button>
+      </form>
+    </div>
+    -->
+  </div>
+
+  <div class="terceiraDiv">
+    <h2>Benefícios do HidroWebnia</h2>
+    <h3>Maximizando a eficiência e produtividade da sua produção hidropônica.</h3>
+
+    <div class="categorias">
+      <div class="categoria">
+        <div class="icones">🌱</div>
+        <div class="titulos">Cultivo Sustentável</div>
+      </div>
+      <div class="categoria">
+        <div class="icones">💧</div>
+        <div class="titulos">Economia de Água</div>
+      </div>
+      <div class="categoria">
+        <div class="icones">📊</div>
+        <div class="titulos">Segurança de Dados</div>
+      </div>
+      <div class="categoria">
+        <div class="icones">📈</div>
+        <div class="titulos">Sustentabilidade Ambiental</div>
+      </div>
+    </div>
+
+    <div class="categorias">
+      <div class="categoria">
+        <div class="icones">🔒</div>
+        <div class="titulos">Monitoramento em Tempo Real</div>
+      </div>
+      <div class="categoria">
+        <div class="icones">🌍</div>
+        <div class="titulos">Otimização da Produção</div>
+      </div>
+      <div class="categoria">
+        <div class="icones">🚀</div>
+        <div class="titulos">Acesso a Tecnologias Avançadas</div>
+      </div>
+      <div class="categoria">
+        <div class="icones">🛠️</div>
+        <div class="titulos">Melhoria da Qualidade do Produto</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quartaDiv">
+    <h2>Apoiadores do projeto</h2>
+    <div id="imagens">
+      <div>
+        <img src="https://hidrowebnia.onrender.com/static/media/ifce.03c8e6ac01efebdf4cd78df40ac3dacf.svg" alt="">
+      </div>
+      <div>
+        <img id="cidts" src="https://hidrowebnia.onrender.com/static/media/cidts.cffac5c884b05b70791e.png" alt="">
+      </div>
+      <div>
+        <img src="https://hidrowebnia.onrender.com/static/media/gov.dd865b8d29189c64ac64db7d841bd549.svg" alt="">
+      </div>
+      <div>
+        <img id="tic" src="https://hidrowebnia.onrender.com/static/media/tic.72848725d9a88634322eeb66c88532e7.svg" alt="">
+      </div>
+      <div>
+        <img src="https://hidrowebnia.onrender.com/static/media/LABORAT%C3%93RIO_DE_INOVA%C3%87%C3%83O_PARA__1.ede88dca2c01197360f8.png" alt="">
+      </div>
+      <div>
+        <img src="https://hidrowebnia.onrender.com/static/media/rotas.1e2a5b3e1e6672d925b3.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div class="quintaDiv">
+    <h2>Depoimento de nossos clientes</h2>
+    <div class="clientes">
+      <div class="cliente">
+        <img src="https://img.freepik.com/fotos-gratis/homem-retrato-rindo_23-2148859448.jpg?t=st=1728478365~exp=1728481965~hmac=70b272fc1b38e2b4e98628df0d8fab50c459f92054ea7e2d3924eda3dc57e652&w=740" alt="">
+        <p>João Silva</p>
+        <p>"Eu estava procurando por um serviço de qualidade para hidroponia e encontrei aqui."</p>
+      </div>
+      <div class="cliente">
+        <img src="https://img.freepik.com/fotos-gratis/retrato-de-uma-jovem-sorrindo_23-2149260597.jpg?t=st=1728478396~exp=1728481996~hmac=cebb746e8ea0e3df5387b62f545bbde05a05c795e5e907fc0533c1c1b5d68ea4&w=900" alt="">
+        <p>Maria Santos</p>
+        <p>"A equipe do HidroWebnia foi muito atenciosa e me ajudou a resolver meu problema."</p>
+      </div>
+      <div class="cliente">
+        <img src="https://img.freepik.com/fotos-gratis/jovem-homem-posando-isolado-contra-a-parede-em-branco-do-estudio_273609-12356.jpg?t=st=1728478422~exp=1728482022~hmac=b98eda948ab14f44639a15a639be4e6d7221e53de4af6f9e5224010a2bed66c6&w=900" alt="">
+        <p>Pedro Oliveira</p>
+        <p>"O serviço foi rápido e eficiente. Estou muito satisfeito com o resultado."</p>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <div class="sextaDiv">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3068.5645231779226!2d-39.70933712637758!3d-5.08308745156072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7bde893a7028ce9%3A0x1deba2f9a7f5a23b!2sInstituto%20Federal%20de%20Educa%C3%A7%C3%A3o%2C%20Ci%C3%AAncia%20e%20Tecnologia%20do%20Cear%C3%A1%20%7C%20Campus%20Boa%20Viagem!5e1!3m2!1spt-BR!2sbr!4v1724846286782!5m2!1spt-BR!2sbr" width="100%" height="100%" loading="lazy" style="border: 0px;"></iframe>
+  </div>
+  -->
+
+
+  <footer>
+    <div class="icones">
+      <a target="_blank" href="https://api.whatsapp.com/send/?phone=5588988155616&text=Ol%C3%A1%2C+tudo+bem+%3F+Gostaria+de+tirar+umas+d%C3%BAvidas+sobre+o+HidroWebnia&type=phone_number&app_absent=0">
+        <img class="contatos" src="../../assets/icon/whatsapp.png" alt="">
+      </a>
+
+      <a target="_blank" href="https://www.instagram.com/">
+        <img class="contatos centro" src="../../assets/icon/instagram.png" alt="">
+      </a>
+
+      <a target="_blank" href="mailto:hidrowebnia@gmail.com">
+        <img class="contatos" src="../../assets/icon/e-mail.png" alt="">
+      </a>
+    </div>
+    <div class="copyright">&copy; 2024 HidroWebnia. Todos os direitos reservados.</div>
+  </footer>
+</ion-content>

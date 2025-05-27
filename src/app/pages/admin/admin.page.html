@@ -1,0 +1,128 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar id="menuA">
+    <ion-title>HidroWebnia</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleDropdown()">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-list *ngIf="isDropdownOpen" class="dropdown-menu" side="bottom">
+  <ion-item [routerLink]="['/home']">
+    <ion-icon name="home-outline" slot="start"></ion-icon>
+    Home
+  </ion-item>
+  <ion-item [routerLink]="['/medidas']">
+    <ion-icon name="stats-chart-outline" slot="start"></ion-icon>
+    Medidas
+  </ion-item>
+  <ion-item [routerLink]="['/report']">
+    <ion-icon name="reader-outline" slot="start"></ion-icon>
+    Relatórios
+  </ion-item>
+  <ion-item button (click)="logout()">
+    <ion-icon name="power-outline" slot="start"></ion-icon>
+    Logout
+  </ion-item>
+</ion-list>
+
+<ion-content [fullscreen]="true">
+  <div id="conteudo">
+    <h1>Administração</h1>
+    <ul>
+      <li><button [ngStyle]="{'background-color': hidroponia ? '#1e3932' : '#26503c'}" (click)="hidroponia = !hidroponia; detalhes = false; novaHidroponia = false;" class="nav-button">Hidroponia</button></li>
+      <li><button [ngStyle]="{'background-color': detalhes ? '#1e3932' : '#26503c'}" (click)="hidroponia = false; detalhes = !detalhes; novaHidroponia = false;" class="nav-button">Detalhes</button></li>
+      <li><button [ngStyle]="{'background-color': novaHidroponia ? '#1e3932' : '#26503c'}" (click)="hidroponia = false; detalhes = false; novaHidroponia = !novaHidroponia;" class="nav-button">Nova Hidroponia</button></li>
+    </ul>
+    <!--
+    <div [ngStyle]="{'display': hidroponia ? 'block' : 'none'}" id="hidroponia">
+      <table>
+        <thead>
+          <tr class="hidroponia">
+            <th class="foto">Foto</th>
+            <th class="nome">Device</th>
+            <th class="data">Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="cell" *ngFor="let device of devices">
+            <td class="foto"><img [src]="device.image" (error)="setDefaultImage($event)" alt="Foto" width="50" height="50"></td>
+            <td class="nome">{{ device.name }}</td>
+            <td class="data">{{ device.registrationDate | date: 'dd/MM/yyyy' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    -->
+    <div *ngIf="!devices" id="loading">
+      <p>Carregando dados...</p>
+    </div>
+
+    <div [ngStyle]="{'display': hidroponia ? 'block' : 'none'}" id="hidroponia">
+      <div class="cards">
+        <div class="card"
+          *ngFor="let device of devices"
+        >
+          <p class="data">{{ device.registrationDate | date: 'dd/MM/yyyy' }}</p>
+          <img [src]="device.image" (error)="setDefaultImage($event)" alt="Foto" width="50" height="50">
+          <p class="nome">{{ device.name }}</p>
+        </div>
+      </div>
+      <div id="noDevices" *ngIf="devices && devices.length === 0">
+        <p>Sem dispositivos disponíveis.</p>
+      </div>
+    </div>
+
+    <div [ngStyle]="{'display': detalhes ? 'block' : 'none'}" id="detalhes">
+      <div class="cards">
+        <div class="card"
+          (click)="openPopover($event, device._id, device.name, device.description)"
+          *ngFor="let device of devices"
+        >
+          <p class="data">{{ device.registrationDate | date: 'dd/MM/yyyy' }}</p>
+          <img [src]="device.image" (error)="setDefaultImage($event)" alt="Foto" width="50" height="50">
+          <div class="legenda">
+            <p class="id">ID: {{ device._id }}</p>
+            <i
+            [ngStyle]="{'background-color': !copiado[device._id] ? '#fff' : '#2DD36F'}"
+            [ngClass]="{'bi bi-copy': !copiado[device._id], 'bi bi-check-lg': copiado[device._id]}"
+            class="bi bi-copy" (click)="copiarTexto($event ,device._id)">
+            </i>
+          </div>
+          <p class="nome">{{ device.name }}</p>
+
+        </div>
+      </div>
+      <div id="noDevices" *ngIf="devices && devices.length === 0">
+        <p>Sem dispositivos disponíveis.</p>
+      </div>
+    </div>
+
+    <div *ngIf="devices" [ngStyle]="{'display': novaHidroponia ? 'block' : 'none'}" id="novaHidroponia">
+      <form>
+        <div>
+          <label for="email">Email</label>
+          <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" type="email" id="email" placeholder="Digite seu Email" required>
+        </div>
+        <div>
+          <label for="nomeHidroponia">Nome da Hidroponia</label>
+          <input [(ngModel)]="name" [ngModelOptions]="{standalone: true}" type="text" id="nomeHidroponia" placeholder="Digite o Nome da Hidroponia" required>
+        </div>
+        <div>
+          <label for="descricaoHidroponia">Descrição</label>
+          <input [(ngModel)]="description" [ngModelOptions]="{standalone: true}" type="text" id="descricaoHidroponia" placeholder="Digite uma Descrição para sua Hidroponia">
+        </div>
+        <!--
+        <div>
+          <label for="imagemHidroponia">Imagem</label>
+          <input type="file" accept="image/*" id="imagemHidroponia" class="btnUploadFile">
+        </div>
+        -->
+        <button type="button" id="btnSalvar" (click)="registerDevice()">Salvar</button>
+        <button type="button" id="btnCancelar">Cancelar</button>
+      </form>
+    </div>
+  </div>
+</ion-content>

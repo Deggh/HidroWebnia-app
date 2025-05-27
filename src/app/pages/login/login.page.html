@@ -1,0 +1,36 @@
+<ion-header id="menuL" [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>HidroWebnia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login-page">
+    <div id="login">
+      <h2>Login</h2>
+
+      <form>
+        <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" placeholder="Email" type="email" required>
+
+        <div class="password">
+          <input [attr.type]="mostrarSenha ? 'text' : 'password'" [(ngModel)]="senha" [ngModelOptions]="{standalone: true}" placeholder="Senha" type="password" required>
+          <i (click)="mostrarSenha = !mostrarSenha" class="bi" [class.bi-eye-fill]="!mostrarSenha" [class.bi-eye-slash-fill]="mostrarSenha"></i>
+        </div>
+
+        <button (click)="login()" [disabled]="loading">
+          <ion-spinner name="crescent" *ngIf="loading"></ion-spinner>
+          <span *ngIf="!loading">Login</span>
+        </button>
+      </form>
+
+      <a [routerLink]="['/register']">
+        <p>Não tem uma conta? Registre-se aqui</p>
+      </a>
+
+      <a [routerLink]="['/forgot-password']">
+        <p>Esqueceu a senha?</p>
+      </a>
+    </div>
+  </div>
+</ion-content>
+

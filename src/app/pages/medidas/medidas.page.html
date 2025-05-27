@@ -1,0 +1,53 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar id="menuM">
+    <ion-title>HidroWebnia</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleDropdown()">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-list *ngIf="isDropdownOpen" class="dropdown-menu" side="bottom">
+  <ion-item [routerLink]="['/home']">
+    <ion-icon name="home-outline" slot="start"></ion-icon>
+    Home
+  </ion-item>
+  <ion-item [routerLink]="['/admin']">
+    <ion-icon name="settings-outline" slot="start"></ion-icon>
+    Administração
+  </ion-item>
+  <ion-item [routerLink]="['/report']">
+    <ion-icon name="reader-outline" slot="start"></ion-icon>
+    Relatórios
+  </ion-item>
+  <ion-item button (click)="logout()">
+    <ion-icon name="power-outline" slot="start"></ion-icon>
+    Logout
+  </ion-item>
+</ion-list>
+
+
+<ion-content [fullscreen]="true">
+  <div class="titulo">
+    <h1>Medidas</h1>
+  </div>
+  <div *ngIf="devices">
+    <div class="hidroponias" *ngIf="devices.length > 0">
+      <div [routerLink]="['/hidroponia', device._id]" class="hidroponia" *ngFor="let device of devices">
+        <img [src]="device.image" (error)="setDefaultImage($event)" alt="Foto" width="50" height="50">
+        <div class="nome">
+          <h2>{{ device.name }}</h2>
+        </div>
+      </div>
+    </div>
+    <div id="noDevices" *ngIf="devices && devices.length === 0">
+      <p>Sem dispositivos disponíveis.</p>
+    </div>
+
+  </div>
+  <div id="loading" *ngIf="!devices">
+    <p>Carregando dados...</p>
+  </div>
+</ion-content>

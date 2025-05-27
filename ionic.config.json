@@ -1,0 +1,7 @@
+{
+  "name": "HidroWebnia",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

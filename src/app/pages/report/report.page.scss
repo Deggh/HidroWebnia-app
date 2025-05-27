@@ -1,0 +1,138 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-shadow: 0;
+  border: none;
+}
+
+ion-title{
+  margin-left: 48px;
+}
+
+ion-item ion-icon {
+  color: #fff;
+  margin: 0 10px 0 0;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(56px + env(safe-area-inset-top));
+  width: 100%;
+  z-index: 1000;
+}
+
+ion-content{
+  --ion-background-color: #f9f4ef;
+}
+
+.titulo{
+  padding: 30px 0;
+}
+
+h1{
+  color: #26503c;
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.hidroponias {
+  max-width: 680px;
+  color: #222;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+}
+
+@media (max-width: 680px) {
+  .hidroponias{
+    max-width: 460px;
+  }
+}
+
+.hidroponia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 5px;
+  width: 200px;
+  transition: transform 0.3s;
+}
+
+.hidroponia:hover {
+  transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+
+.hidroponia img {
+  width: 200px;
+  height: 150px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  object-fit: cover;
+}
+
+.hidroponia h2 {
+  font-size: 14px;
+  margin-top: 0;  /* Se necessário, ajuste a margem superior do título */
+}
+
+.nome{
+  padding: 15px;
+}
+
+@media (max-width: 460px) {
+  .hidroponias{
+    justify-content: center;
+  }
+
+  .hidroponia{
+    width: 150px;
+  }
+
+  .hidroponia img{
+    width: 150px;
+    height: 120px;
+  }
+
+  .hidroponia h2 {
+    font-size: 13px;
+  }
+
+  .nome{
+    padding: 10px;
+  }
+}
+
+#noDevices{
+  color: #222222;
+  margin: 30px auto;
+  padding: 0;
+}
+
+#noDevices p{
+  text-align: center;
+  margin: auto;
+  padding: 0;
+}
+
+#loading{
+  color: #222222;
+  margin: 30px auto;
+  padding: 0;
+}
+
+#loading p{
+  text-align: center;
+  margin: auto;
+  padding: 0;
+}
+
