@@ -93,17 +93,17 @@ export class AdminPage implements OnInit {
               const message = typeof response === 'string' ? response : response?.msg || 'Dispositivo atualizado com sucesso!';
               const toast = await this.toastController.create({
                 message: message,
-                duration: 3000,
+                duration: 2000,
                 color: 'success',
                 position: 'top',
                 positionAnchor: 'menuA',
               });
               await toast.present();
             } catch (error: any) {
-              const errorMessage = error.error?.msg || error.error?.message || 'Ocorreu um erro. Tente novamente.';
+              const errorMessage = error.error?.msg || error.error?.message || 'Ocorreu um erro, tente novamente.';
               const toast = await this.toastController.create({
                 message: `${errorMessage}`,
-                duration: 3000,
+                duration: 2000,
                 color: 'danger',
                 position: 'top',
                 positionAnchor: 'menuA',
@@ -131,7 +131,7 @@ export class AdminPage implements OnInit {
 
       const toast = await this.toastController.create({
         message: message,
-        duration: 3000,
+        duration: 2000,
         color: 'success',
         position: 'top',
         positionAnchor: 'menuA',
@@ -139,11 +139,11 @@ export class AdminPage implements OnInit {
       await toast.present();
 
     } catch (error: any) {
-      const errorMessage = error.error?.msg || error.error?.message || 'Ocorreu um erro. Tente novamente.';
+      const errorMessage = error.error?.msg || error.error?.message || 'Ocorreu um erro, tente novamente.';
 
       const toast = await this.toastController.create({
         message: `${errorMessage}`,
-        duration: 3000,
+        duration: 2000,
         color: 'danger',
         position: 'top',
         positionAnchor: 'menuA',
@@ -313,10 +313,10 @@ export class AdminPage implements OnInit {
   email = '';
 
   async registerDevice() {
-    if (!this.name || !this.email) {
+    if (!this.name || !this.email || !this.description) {
         const toast = await this.toastController.create({
-          message: 'Nome e Email são obrigatórios!',
-          duration: 3000,
+          message: 'Email, nome e descrição são obrigatórios!',
+          duration: 2000,
           color: 'warning',
           position: 'top',
           positionAnchor: 'menuA',
@@ -335,7 +335,7 @@ export class AdminPage implements OnInit {
         const message = 'Dispositivo cadastrado com sucesso!';
         const toast = await this.toastController.create({
           message: message,
-          duration: 3000,
+          duration: 2000,
           color: 'success',
           position: 'top',
           positionAnchor: 'menuA',
@@ -346,10 +346,16 @@ export class AdminPage implements OnInit {
         });
       },
       async (error) => {
-        const errorMessage = error.error?.msg || error.error?.message || 'Ocorreu um erro. Tente novamente.';
+        let errorMessage = error.error?.msg || error.error?.message || 'Ocorreu um erro, tente novamente.';
+
+        // Verifica erro de duplicação
+        if (error.error?.code === 11000) {
+            errorMessage = 'Já existe um dispositivo com esse nome. Por favor, escolha outro.';
+        }
+
         const toast = await this.toastController.create({
           message: `${errorMessage}`,
-          duration: 3000,
+          duration: 2000,
           color: 'danger',
           position: 'top',
           positionAnchor: 'menuA',
@@ -405,12 +411,50 @@ export class AdminPage implements OnInit {
   async logout() {
     try {
       await this.authService.logout(); // Garante que o token foi removido
-      console.log('Token removido com sucesso');
+
+      const message = 'Conta desconectada';
+
+      const toast = await this.toastController.create({
+        message: message,
+        duration: 500,
+        color: 'success',
+        position: 'top',
+        positionAnchor: 'menuA',
+        cssClass: 'toast-message'
+      });
+      await toast.present();
+
       this.router.navigate(['/login']); // Só redireciona depois que o token foi removido
-    } catch (error) {
-      console.error('Erro ao fazer logout:', error);
+    } catch (error: any) {
+      const errorMessage = error.error?.msg || error.error?.message || 'Erro ao desconectar, tente novamente.';
+
+      const toast = await this.toastController.create({
+        message: `${errorMessage}`,
+        duration: 2000,
+        color: 'danger',
+        position: 'top',
+        positionAnchor: 'menuA',
+      });
+      await toast.present();
     }
   }
 }
 
 
+/*
+try {
+
+      this.router.navigate(['/login']); // Só redireciona depois que o token foi removido
+    } catch (error) {
+      const errorMessage = 'Erro ao desconectar, tente novamente.';
+
+      const toast = await this.toastController.create({
+        message: `${errorMessage}`,
+        duration: 3000,
+        color: 'danger',
+        position: 'top',
+        positionAnchor: 'menuA',
+      });
+      await toast.present();
+    }
+*/

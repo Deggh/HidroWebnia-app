@@ -27,7 +27,7 @@ export class ForgotPasswordPage implements OnInit {
 
       const toast = await this.toastController.create({
         message: `${response.msg}`,
-        duration: 3000,
+        duration: 2000,
         color: 'success',
         position: 'top',
         positionAnchor: 'menuF',
@@ -37,11 +37,11 @@ export class ForgotPasswordPage implements OnInit {
 
     } catch (error: any) {
       // Exibir a mensagem detalhada de erro do backend
-      const errorMessage = error.error?.message || 'Ocorreu um erro. Tente novamente.'
+      const errorMessage = error.error?.message || 'Ocorreu um erro, tente novamente.'
 
       const toast = await this.toastController.create({
         message: `${errorMessage}`,
-        duration: 3000,
+        duration: 2000,
         color: 'danger',
         position: 'top',
         positionAnchor: 'menuF',

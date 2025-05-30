@@ -45,7 +45,7 @@ export class HidroponiaPage implements OnInit {
           },
         );
       } catch (error: any) {
-        let errorMessage = 'Ocorreu um erro. Tente novamente.';
+        let errorMessage = 'Ocorreu um erro, não foi possível carregar os dispositivos.';
 
         if (error.error?.msg) {
           errorMessage = error.error.msg;
@@ -55,7 +55,7 @@ export class HidroponiaPage implements OnInit {
 
         const toast = await this.toastController.create({
           message: `${errorMessage}`,
-          duration: 3000,
+          duration: 2000,
           color: 'danger',
           position: 'top',
           positionAnchor: 'menuC',
